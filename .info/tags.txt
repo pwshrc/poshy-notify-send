@@ -1,0 +1,10 @@
+notify-send
+notify-send-wsl
+GrowlNotify
+kdialog
+notifu
+TerminalNotifier
+BurntToast
+toast
+terminal
+pwshrc
