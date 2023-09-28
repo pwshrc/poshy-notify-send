@@ -6,6 +6,14 @@ Set-StrictMode -Version Latest
 if ((-not ($Env:SSH_CONNECTION)) -and (Test-SessionInteractivity)) {
     [string] $notifysend_bin = Search-CommandPath notify-send
     if ($notifysend_bin) {
+        <#
+        .SYNOPSIS
+            Sends a notification to the desktop environment.
+        .PARAMETER Title
+            The title of the notification.
+        .PARAMETER Message
+            The message of the notification.
+        #>
         function notify-send-proper {
             param(
                 [Parameter(Mandatory=$true, Position=0)]
@@ -24,6 +32,14 @@ if ((-not ($Env:SSH_CONNECTION)) -and (Test-SessionInteractivity)) {
 
     [string] $wslnotifysend_bin = Search-CommandPath wsl-notify-send.exe
     if ($IsWSL -and $wslnotifysend_bin) {
+        <#
+        .SYNOPSIS
+            Sends a notification to the desktop environment.
+        .PARAMETER Title
+            The title of the notification.
+        .PARAMETER Message
+            The message of the notification.
+        #>
         function notify-send-wsl {
             param(
                 [Parameter(Mandatory=$true, Position=0)]
@@ -42,6 +58,14 @@ if ((-not ($Env:SSH_CONNECTION)) -and (Test-SessionInteractivity)) {
 
     [string] $growlnotify_bin = Search-CommandPath growlnotify
     if ($growlnotify_bin) {
+        <#
+        .SYNOPSIS
+            Sends a notification to the desktop environment.
+        .PARAMETER Title
+            The title of the notification.
+        .PARAMETER Message
+            The message of the notification.
+        #>
         function notify-send-growlnotify {
             param(
                 [Parameter(Mandatory=$true, Position=0)]
@@ -60,6 +84,16 @@ if ((-not ($Env:SSH_CONNECTION)) -and (Test-SessionInteractivity)) {
 
     [string] $kdialog_bin = Search-CommandPath kdialog
     if ($kdialog_bin) {
+        <#
+        .SYNOPSIS
+            Sends a notification to the desktop environment.
+        .PARAMETER Title
+            The title of the notification.
+        .PARAMETER Message
+            The message of the notification.
+        .PARAMETER TimeoutSeconds
+            The number of seconds to wait before automatically closing the notification.
+        #>
         function notify-send-kdialog {
             param(
                 [Parameter(Mandatory=$true, Position=0)]
@@ -82,6 +116,16 @@ if ((-not ($Env:SSH_CONNECTION)) -and (Test-SessionInteractivity)) {
 
     [string] $notifu_bin = Search-CommandPath notifu
     if ($notifu_bin) {
+        <#
+        .SYNOPSIS
+            Sends a notification to the desktop environment.
+        .PARAMETER Title
+            The title of the notification.
+        .PARAMETER Message
+            The message of the notification.
+        .PARAMETER TimeoutSeconds
+            The number of seconds to wait before automatically closing the notification.
+        #>
         function notify-send-notifu {
             param(
                 [Parameter(Mandatory=$true, Position=0)]
@@ -126,6 +170,14 @@ if ((-not ($Env:SSH_CONNECTION)) -and (Test-SessionInteractivity)) {
             Start-Job -ScriptBlock ${function:ensure-current-appid-windowid-pair}
         ) -Scope Global -Option AllScope
 
+        <#
+        .SYNOPSIS
+            Sends a notification to the desktop environment.
+        .PARAMETER Title
+            The title of the notification.
+        .PARAMETER Message
+            The message of the notification.
+        #>
         function notify-send-terminalnotifier {
             param(
                 [Parameter(Mandatory=$true, Position=0)]
@@ -165,6 +217,16 @@ if ((-not ($Env:SSH_CONNECTION)) -and (Test-SessionInteractivity)) {
         }
     }
     if (Get-Module BurntToast -ErrorAction SilentlyContinue) {
+        <#
+        .SYNOPSIS
+            Sends a notification to the desktop environment.
+        .PARAMETER Title
+            The title of the notification.
+        .PARAMETER Message
+            The message of the notification.
+        .PARAMETER TimeoutSeconds
+            The number of seconds to wait before automatically closing the notification.
+        #>
         function notify-send-burnttoast {
             param(
                 [Parameter(Mandatory=$true, Position=0)]
@@ -188,6 +250,14 @@ if ((-not ($Env:SSH_CONNECTION)) -and (Test-SessionInteractivity)) {
 
 
 if (-not (Get-Command notify-send -ErrorAction SilentlyContinue)) {
+    <#
+    .SYNOPSIS
+        Sends a notification to the desktop environment.
+    .PARAMETER Title
+        The title of the notification.
+    .PARAMETER Message
+        The message of the notification.
+    #>
     function notify-send-fallback {
         param(
             [Parameter(Mandatory=$true, Position=0)]
